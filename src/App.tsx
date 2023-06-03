@@ -10,21 +10,25 @@ export const App = () => {
   const [csvData, setCsvData] = useState<string[][]>();
   const [filter, setFilter] = useState<string>("");
 
-  const handleKeyDown = async (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === "Enter") {
-      if (filter === "") {
-        const apiCsvData = await apiClient.get("/api/users");
+  const handleKeyUp = async (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const filters = filter.split(",");
 
-        setCsvData(apiCsvData.data);
-      } else {
-        const filteredData = await apiClient.get("/api/users", {
-          params: {
-            name: filter,
-          },
-        });
+    const params: { [key: string]: any } = {};
 
-        setCsvData(filteredData.data);
-      }
+    for (const key of filters) {
+      params[key.trim()] = key.trim();
+    }
+
+    if (filter === "") {
+      const apiCsvData = await apiClient.get("/api/users");
+
+      setCsvData(apiCsvData.data);
+    } else {
+      const filteredData = await apiClient.get("/api/users", {
+        params,
+      });
+
+      setCsvData(filteredData.data);
     }
   };
 
@@ -70,9 +74,9 @@ export const App = () => {
         <Box className="box">
           <TextField
             fullWidth={true}
-            placeholder="Filter the data by columns"
+            placeholder="Filter the data by columns, separated by comma"
             onChange={(e) => setFilter(e.target.value)}
-            onKeyDown={handleKeyDown}
+            onKeyUp={handleKeyUp}
           />
           {csvData?.map((row, index) => {
             return <Card row={row} key={index} />;

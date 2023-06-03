@@ -62,18 +62,18 @@ describe("App Component", () => {
 
     await waitFor(() => {
       const filterInput = screen.getByPlaceholderText(
-        "Filter the data by columns"
+        "Filter the data by columns, separated by comma"
       );
 
       expect(filterInput).toBeInTheDocument();
     });
 
     const filterInput = screen.getByPlaceholderText(
-      "Filter the data by columns"
+      "Filter the data by columns, separated by comma"
     );
 
     fireEvent.change(filterInput, { target: { value: "New York" } });
-    fireEvent.keyDown(filterInput, { key: "Enter" });
+    fireEvent.keyUp(filterInput, { key: "Enter" });
 
     await waitFor(() => {
       expect(mockGet).toHaveBeenCalledTimes(2);
@@ -81,7 +81,7 @@ describe("App Component", () => {
 
     await waitFor(() => {
       expect(mockGet).toHaveBeenCalledWith("/api/users", {
-        params: { name: "New York" },
+        params: { "New York": "New York" },
       });
     });
 
@@ -106,7 +106,7 @@ describe("App Component", () => {
 
     await waitFor(() => {
       const textField = screen.getByPlaceholderText(
-        "Filter the data by columns"
+        "Filter the data by columns, separated by comma"
       );
 
       expect(textField).toBeInTheDocument();
@@ -130,7 +130,7 @@ describe("App Component", () => {
 
     await waitFor(() => {
       const textField = screen.getByPlaceholderText(
-        "Filter the data by columns"
+        "Filter the data by columns, separated by comma"
       );
 
       expect(textField).toBeInTheDocument();
