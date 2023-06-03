@@ -2,8 +2,8 @@ import { Box, Modal, TextField } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { apiClient } from "./services/api";
-import "./styles/app.styles.css";
 import { Card } from "./components/card";
+import "./styles/app.styles.css";
 
 export const App = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -74,8 +74,8 @@ export const App = () => {
             onChange={(e) => setFilter(e.target.value)}
             onKeyDown={handleKeyDown}
           />
-          {csvData?.map((row) => {
-            return <Card row={row} />;
+          {csvData?.map((row, index) => {
+            return <Card row={row} key={index} />;
           })}
         </Box>
       </Modal>

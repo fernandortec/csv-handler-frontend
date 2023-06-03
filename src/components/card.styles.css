@@ -1,3 +1,11 @@
+.card {
+  margin: 10px;
+}
+
+.card:hover {
+  border: 1px solid lightblue;
+}
+
 .card .header {
   font-size: 18px;
 }

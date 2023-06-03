@@ -3,7 +3,7 @@ import "./card.styles.css";
 
 export const Card = ({ row }: { row: string[] }): JSX.Element => {
   return (
-    <MuiCard className="card">
+    <MuiCard className="card" id="card">
       <CardContent>
         <Typography className="header" color="text.primary">
           Name: {row[0]}
