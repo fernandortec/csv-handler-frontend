@@ -1,0 +1,57 @@
+.app {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+label {
+  margin: 40px;
+}
+
+.input {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-right: 8px;
+  flex: 1;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.box {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 950px;
+  max-height: 90vh;
+  min-height: 90vh;
+  overflow-y: auto;
+
+  box-sizing: content-box;
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 350px) {
+  .app h1 {
+    width: 60%;
+  }
+}
